@@ -1,0 +1,15 @@
+{
+  "name": "firewall.bot",
+  "version": "1.0.0",
+  "description": "Firewall bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ignacio Benavides",
+  "license": "MIT",
+  "dependencies": {
+    "ip-regex": "^2.1.0",
+    "node-telegram-bot-api": "^0.27.1"
+  }
+}
