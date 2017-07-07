@@ -18,7 +18,7 @@ const ipRegex = require('ip-regex');
 
 console.log('STARTING: ' + config.telegram_bot_token);
 
-const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, {polling: true});
+const bot = new TelegramBot(config.telegram_bot_token, {polling: true});
 
 // Should matche ".unblock [whatever]"
 bot.onText(/\.unblock (.+)/, (msg, match) => {
