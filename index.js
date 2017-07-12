@@ -24,12 +24,10 @@ const bot = new TelegramBot(config.telegram_bot_token, {polling: true})
 const CHATS_AUTHENTICATED = {}
 
 const COMMANDS_LIST = {
-	"uptime": "uptime",
-	"ps": "ps aux"
+	"uptime": "uptime"
 }
 const FUN_MESSAGES = {
-	"marco": "polo",
-	"<3": ":D",
+	"❤️": "😁",
 }
 
 Object.assign(COMMANDS_LIST, config.commands)
@@ -61,10 +59,6 @@ bot.onText(/\.unblock (.+)/, (msg, match) => {
 			bot.sendMessage(msg.chat.id, 'Invalid IP.')
 		}
 	}
-	else
-	{
-		bot.sendMessage(msg.chat.id, 'First authenticate yourself by typing:\n\n.password ******')
-	}
 })
 
 // Should matche ".unblock [whatever]"
@@ -95,11 +89,7 @@ bot.on('message', (msg) => {
 	{
 		bot.sendMessage(msg.chat.id, FUN_MESSAGES[message])
 	}
-	else if (CHATS_AUTHENTICATED[msg.chat.id])
-	{
-		bot.sendMessage(msg.chat.id, 'The command you\'re looking can\'t be found.')
-	}
-	else
+	else if (!CHATS_AUTHENTICATED[msg.chat.id])
 	{
 		bot.sendMessage(msg.chat.id, 'First authenticate yourself by typing:\n\n.password ******')
 	}
