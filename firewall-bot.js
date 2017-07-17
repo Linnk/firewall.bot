@@ -39,7 +39,7 @@ bot.onText(/\.unblock (.+)/, (msg, match) => {
 	{
 		var ip_address = match[1]
 
-		if (ipRegex({exact: true}).test(ip))
+		if (ipRegex({exact: true}).test(ip_address))
 		{
 			var command = 'csf -dr ' + ip_address
 			command += ' && csf -tr ' + ip_address
@@ -53,6 +53,7 @@ bot.onText(/\.unblock (.+)/, (msg, match) => {
 			exec(command, (error, stdout, stderr) => {
 				bot.sendMessage(msg.chat.id, stdout)
 			})
+			console.log(command);
 		}
 		else
 		{
@@ -67,6 +68,7 @@ bot.onText(/\.password (.+)/, (msg, match) => {
 	if (password === config.password)
 	{
 		CHATS_AUTHENTICATED[msg.chat.id] = true
+		bot.sendMessage(msg.chat.id, 'You\'re now authenticated! :)')
 	}
 })
 
@@ -89,7 +91,7 @@ bot.on('message', (msg) => {
 	{
 		bot.sendMessage(msg.chat.id, FUN_MESSAGES[message])
 	}
-	else if (!CHATS_AUTHENTICATED[msg.chat.id])
+	else if (!CHATS_AUTHENTICATED[msg.chat.id] && !/\.password (.+)/.test(message))
 	{
 		bot.sendMessage(msg.chat.id, 'First authenticate yourself by typing:\n\n.password ******')
 	}

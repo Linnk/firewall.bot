@@ -2,7 +2,7 @@
   "name": "firewall.bot",
   "version": "1.0.0",
   "description": "Firewall bot",
-  "main": "index.js",
+  "main": "firewall-bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
