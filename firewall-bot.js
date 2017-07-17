@@ -16,6 +16,8 @@ const config = JSON.parse(require('fs').readFileSync('config.json', 'utf8'))
 const TelegramBot = require('node-telegram-bot-api')
 const exec = require('child_process').exec
 const ipRegex = require('ip-regex')
+const Tail = require('tail').Tail;
+const tail = new Tail('/var/log/lfd.log');
 
 console.log('STARTING: ' + config.telegram_bot_token)
 
@@ -98,3 +100,17 @@ bot.on('message', (msg) => {
 
 	console.log('Message: ' + message)
 })
+
+// Tail lfd.log for every entry with Mexico in it.
+tail.on('line', function(data) {
+	if (/Mexico/.test(data))
+	{
+		for (var chat_id in CHATS_AUTHENTICATED)
+		{
+			if (object.hasOwnProperty(chat_id))
+			{
+				bot.sendMessage(msg.chat.id, data)
+			}
+		}
+	}
+});

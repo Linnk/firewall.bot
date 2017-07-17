@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "ip-regex": "^2.1.0",
-    "node-telegram-bot-api": "^0.27.1"
+    "node-telegram-bot-api": "^0.27.1",
+    "tail": "^1.2.2"
   }
 }
