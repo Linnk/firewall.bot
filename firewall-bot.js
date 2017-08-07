@@ -107,9 +107,9 @@ tail.on('line', function(data) {
 	{
 		for (var chat_id in CHATS_AUTHENTICATED)
 		{
-			if (object.hasOwnProperty(chat_id))
+			if (CHATS_AUTHENTICATED.hasOwnProperty(chat_id))
 			{
-				bot.sendMessage(msg.chat.id, data)
+				bot.sendMessage(chat_id, data)
 			}
 		}
 	}
