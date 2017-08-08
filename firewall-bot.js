@@ -12,12 +12,13 @@
  * @author Ignacio Benavides
  */
 const config = JSON.parse(require('fs').readFileSync('config.json', 'utf8'))
+const LFD_FILE = '/var/log/lfd.log';
 
 const TelegramBot = require('node-telegram-bot-api')
 const exec = require('child_process').exec
 const ipRegex = require('ip-regex')
 const Tail = require('tail').Tail;
-const tail = new Tail('/var/log/lfd.log');
+const tail = new Tail(LFD_FILE);
 
 console.log('STARTING: ' + config.telegram_bot_token)
 
@@ -109,7 +110,7 @@ tail.on('line', function(data) {
 		{
 			if (CHATS_AUTHENTICATED.hasOwnProperty(chat_id))
 			{
-				bot.sendMessage(chat_id, data)
+				bot.sendMessage(chat_id, LFD_FILE + ': ' + data)
 			}
 		}
 	}
