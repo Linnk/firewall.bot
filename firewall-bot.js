@@ -31,6 +31,9 @@ const COMMANDS_LIST = {
 }
 const FUN_MESSAGES = {
 	"❤️": "😁",
+	"Gracias bot": "Es mi trabajo. :)",
+	"Buen bot": "Yay ٩(^ᴗ^)۶",
+	"Eres un buen bot": "Yay ٩(^ᴗ^)۶",
 }
 
 Object.assign(COMMANDS_LIST, config.commands)
